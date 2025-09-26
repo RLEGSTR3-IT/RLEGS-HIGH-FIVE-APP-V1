@@ -1,0 +1,4 @@
+.env
+
+server/__pycache__
+server/.form-app-venv

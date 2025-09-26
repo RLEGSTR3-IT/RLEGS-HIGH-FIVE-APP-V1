@@ -1,0 +1,61 @@
+<!doctype html>
+
+<html lang="id">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<meta name="theme-color" content="#E85D04">
+	<title>8 Fishing Spot RLEGS III</title>
+	<!-- Font Awesome for better icons -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+	<!-- Custom styles -->
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+	<div id="loading" class="loading-screen">
+		<div class="loading-container">
+			<div class="logo-animation">
+				<div class="logo-circle">
+					<img src="logo-telkom.png" alt="RLEGS Logo" class="logo-image"
+						onerror="this.style.display='none'; this.parentNode.innerHTML='<span style=\'font-size:24px;font-weight:800;color:#dc2626;\'>RLEGS</span>'">
+				</div>
+				<div class="logo-dots">
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+			</div>
+			<div class="loading-brand">RLEGS BOT</div>
+			<div class="loading-subtitle">8 Fishing Spot RLEGS III</div>
+			<div class="running-text-container">
+				<div class="running-text" id="runningText">
+					Launching App...
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		(async () => {
+			try {
+				const res = await fetch('/auth/check', {credentials: 'same-origin'});
+				if (res.ok) {
+					location.replace("/form");
+				}
+				else {
+					location.replace("/login");
+				}
+			}
+			catch (e) {
+				location.replace("/login");
+			}
+		})();
+	</script>
+
+	<!-- Custom scripts -->
+	<!-- <script src="script.js"></script> -->
+</body>
+
+</html>

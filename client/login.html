@@ -1,0 +1,79 @@
+<!doctype html>
+
+<html lang="id">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<meta name="theme-color" content="#E85D04">
+	<title>8 Fishing Spot RLEGS III</title>
+	<!-- Font Awesome for better icons -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+	<!-- Custom styles -->
+	<link rel="stylesheet" href="login-style.css">
+</head>
+
+<body>
+	<div id="loading" class="loading-screen">
+		<div class="loading-container">
+			<div class="logo-animation">
+				<div class="logo-circle">
+					<img src="logo-telkom.png" alt="RLEGS Logo" class="logo-image"
+						onerror="this.style.display='none'; this.parentNode.innerHTML='<span style=\'font-size:24px;font-weight:800;color:#dc2626;\'>RLEGS</span>'">
+				</div>
+				<div class="logo-dots">
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+			</div>
+			<div class="loading-brand">RLEGS BOT</div>
+			<div class="loading-subtitle">8 Fishing Spot RLEGS III</div>
+			<div class="access-card">
+				<form id="loginForm">
+					<input type="password" name="key" id="accessCodeInput" class="access-input"
+						placeholder="Kode Akses" autofocus required />
+					<button type="submit" id="loginButton" class="login-btn">Masuk</button>
+				</form>
+			</div>
+			<div id="accessError" class="error-msg access-error" style="display: none;"></div>
+		</div>
+	</div>
+
+	<script>
+		const form = document.getElementById('loginForm');
+		const accessError = document.getElementById('accessError');
+
+		form.addEventListener('submit', async function (event) {
+			event.preventDefault();
+
+			const loginForm = event.target;
+			const payload = new FormData(loginForm);
+			try {
+				const res = await fetch('/auth/login', {method: "POST", body: payload});
+
+				if (!res.ok) {
+					const errorBody = await res.text();
+					throw new Error(errorBody);
+				}
+
+				if (res.redirected) {
+					location.replace("/");
+				}
+			}
+			catch (err) {
+				console.error('Submit error:', err.message);
+				accessError.textContent = err.message;
+				accessError.style.display = 'none';
+				setTimeout(() => {
+					accessError.style.display = 'block';
+				}, 250);
+			}
+		});
+	</script>
+
+	<!-- Custom scripts -->
+	<!-- <script src="script.js"></script> -->
+</body>
+
+</html>
