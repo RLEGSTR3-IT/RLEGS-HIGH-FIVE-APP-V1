@@ -105,17 +105,21 @@ function selectActivity(activity) {
 
 	const visitFields = document.getElementById('visitFields');
 	const dealingFields = document.getElementById('dealingFields');
+	const dealingCatOpts = document.getElementById('dealing-cat-opts');
 	visitFields.style.display = 'none';
 	dealingFields.style.display = 'none';
+	dealingCatOpts.style.display = 'none';
 
 	if (activity === 'Visit') {
 		setTimeout(() => {
+			dealingCatOpts.style.display = 'none';
 			visitFields.style.display = 'block';
 			visitFields.classList.add('slide-up');
 		}, 100);
 		setFieldRequirements('visit');
 	} else {
 		setTimeout(() => {
+			dealingCatOpts.style.display = 'block';
 			dealingFields.style.display = 'block';
 			dealingFields.classList.add('slide-up');
 		}, 100);
@@ -152,10 +156,8 @@ function setFieldRequirements(activityType) {
 		document.getElementById('layanan').required = true;
 		document.getElementById('tarif').required = true;
 		document.getElementById('paket_deal').required = false;
-		document.getElementById('deal_bundling').required = false;
 	} else {
 		document.getElementById('paket_deal').required = true;
-		document.getElementById('deal_bundling').required = true;
 		document.getElementById('layanan').required = false;
 		document.getElementById('tarif').required = false;
 	}

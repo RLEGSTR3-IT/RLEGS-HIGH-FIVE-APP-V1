@@ -101,10 +101,16 @@
 				<div class="form-title" id="formTitle">Form High Five</div>
 			</div>
 
+			<!-- TODO: Option Dealing -->
 			<div id="dealing-cat-opts" class="dealing-opts" style="display: none;">
-				<h3>Pilih Jenis Kegiatan</h3>
-				<p>Silakan pilih jenis dealing</p>
-			</div>
+				<h3>Pilih Jenis Dealing</h3>
+				</div<div class="segmented" role="group" aria-label="Mode switch">
+				<button type="button" class="seg-btn is-active" data-mode="bakn"
+					aria-pressed="true">BAKN/SPPJB</button>
+				<button type="button" class="seg-btn" data-mode="kontrak"
+					aria-pressed="false">Kontrak</button>
+				<input type="hidden" name="mode" id="mode" value="basic">
+			</div>>
 
 			<!-- Progress Bar -->
 			<div class="progress-container">
@@ -217,35 +223,29 @@
 				<!-- Dealing specific fields -->
 				<div id="dealingFields" class="form-section" style="display: none;">
 					<div class="section-title">
-						<h3>Dealing Pelanggan</h3>
+						<h3>Data Dealing</h3>
 					</div>
 
 					<div class="input-group">
-						<label for="paket_deal">Deal Paket berapa Mbps? <span
-								class="required">*</span></label>
+						<label for="paket_deal">Pilih Deal Layanan
+							<span class="required">*</span></label>
 						<select id="paket_deal" name="paket_deal">
-							<option value="">Pilih Paket</option>
-							<option value="50 Mbps">50 Mbps</option>
-							<option value="75 Mbps">75 Mbps</option>
-							<option value="100 Mbps">100 Mbps</option>
-							<option value="> 100 Mbps">> 100 Mbps</option>
+							<option value="">Pilih layanan</option>
+							<option value="50 Mbps">Bandwidth Connectivity</option>
+							<option value="75 Mbps">Digital Product</option>
+							<option value="100 Mbps">Cyber Security</option>
+							<option value="> 100 Mbps">Neucentrix</option>
 						</select>
 						<div class="error-msg" id="error_paket_deal"></div>
 					</div>
 
 					<div class="input-group">
-						<label for="deal_bundling">Apakah dealing untuk layanan bundling? <span
-								class="required">*</span></label>
-						<select id="deal_bundling" name="deal_bundling">
-							<option value="">Pilih Bundling</option>
-							<option value="1P Internet Only">1P Internet Only</option>
-							<option value="2P Internet + TV">2P Internet + TV</option>
-							<option value="2P Internet + Telepon">2P Internet + Telepon
-							</option>
-							<option value="3P Internet + TV + Telepon">3P Internet + TV +
-								Telepon</option>
-						</select>
-						<div class="error-msg" id="error_deal_bundling"></div>
+						<label for="revenue_deal">Nominal Revenue Dealing Layanan
+							<span class="required">*</span></label>
+						<input type="text" id="revenue_deal" name="revenue_deal"
+							placeholder="Masukkan Revenue Dealing Layanan" maxlength="20"
+							inputmode="numeric">
+						<div class="error-msg" id="error_revenue_deal"></div>
 					</div>
 				</div>
 
@@ -339,19 +339,21 @@
 	<script src="script.js"></script>
 
 	<script>
-		const el = document.getElementById('kode_sa');
+		const els = document.querySelectorAll('#kode_sa, #revenue_deal');
 
 		// Strip any non-digits after each edit (covers typing, paste, drop)
-		el.addEventListener('input', e => {
-			const s = e.target.selectionStart;
-			const t = e.target.value;
-			const cleaned = t.replace(/\D+/g, '');
-			if (t !== cleaned) {
-				e.target.value = cleaned;
-				// restore caret as best effort
-				const delta = t.length - cleaned.length;
-				e.target.setSelectionRange(Math.max(0, s - delta), Math.max(0, s - delta));
-			}
+		els.forEach(el => {
+			el.addEventListener('input', e => {
+				const s = e.target.selectionStart;
+				const t = e.target.value;
+				const cleaned = t.replace(/\D+/g, '');
+				if (t !== cleaned) {
+					e.target.value = cleaned;
+					// restore caret as best effort
+					const delta = t.length - cleaned.length;
+					e.target.setSelectionRange(Math.max(0, s - delta), Math.max(0, s - delta));
+				}
+			});
 		});
 	</script>
 </body>
