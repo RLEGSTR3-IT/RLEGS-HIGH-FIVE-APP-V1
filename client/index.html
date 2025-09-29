@@ -184,73 +184,37 @@
 				<!-- Visit specific fields -->
 				<div id="visitFields" class="form-section" style="display: none;">
 					<div class="section-title">
-						<h3>Detail Visit Pelanggan</h3>
+						<h3>Detail Visit Client</h3>
 					</div>
 
 					<div class="input-group">
-						<label for="layanan">Layanan yang digunakan saat ini? <span
-								class="required">*</span></label>
-						<select id="layanan" name="layanan">
-							<option value="">Pilih Layanan</option>
-							<option value="Indihome">Indihome</option>
-							<option value="Indibiz">Indibiz</option>
-							<option value="Kompetitor">Kompetitor</option>
-						</select>
+						<label>Opportunity yang didapat saat Visit?<span class="required">*</span></label>
+						<div class="checkbox-group">
+							<label class="checkbox-label">
+								<input type="checkbox" name="layanan[]" value="Connectivity">
+								<span>Connectivity</span>
+							</label>
+							<label class="checkbox-label">
+								<input type="checkbox" name="layanan[]" value="Product Digital">
+								<span>Product Digital</span>
+							</label>
+							<label class="checkbox-label">
+								<input type="checkbox" name="layanan[]" value="Cyber Security">
+								<span>Cyber Security</span>
+							</label>
+							<label class="checkbox-label">
+								<input type="checkbox" name="layanan[]" value="Neucentrix">
+								<span>Neucentrix</span>
+							</label>
+							<label class="checkbox-label">
+								<input type="checkbox" name="layanan[]" value="PDP">
+								<span>PDP</span>
+							</label>
+						</div>
 						<div class="error-msg" id="error_layanan"></div>
 					</div>
 
-					<div class="input-group">
-						<label for="tarif">Tarif Layanan Saat Ini <span
-								class="required">*</span></label>
-						<select id="tarif" name="tarif">
-							<option value="">Pilih Tarif</option>
-							<option value="< Rp 200.000">
-								< Rp 200.000</option>
-							<option value="Rp 200.000 - Rp 350.000">Rp 200.000 - Rp 350.000
-							</option>
-							<option value="> Rp 500.000">> Rp 500.000</option>
-						</select>
-						<div class="error-msg" id="error_tarif"></div>
-					</div>
-				</div>
-
-				<!-- Dealing specific fields -->
-				<div id="dealingFields" class="form-section" style="display: none;">
-					<div class="section-title">
-						<h3>Dealing Pelanggan</h3>
-					</div>
-
-					<div class="input-group">
-						<label for="paket_deal">Deal Paket berapa Mbps? <span
-								class="required">*</span></label>
-						<select id="paket_deal" name="paket_deal">
-							<option value="">Pilih Paket</option>
-							<option value="50 Mbps">50 Mbps</option>
-							<option value="75 Mbps">75 Mbps</option>
-							<option value="100 Mbps">100 Mbps</option>
-							<option value="> 100 Mbps">> 100 Mbps</option>
-						</select>
-						<div class="error-msg" id="error_paket_deal"></div>
-					</div>
-
-					<div class="input-group">
-						<label for="deal_bundling">Apakah dealing untuk layanan bundling? <span
-								class="required">*</span></label>
-						<select id="deal_bundling" name="deal_bundling">
-							<option value="">Pilih Bundling</option>
-							<option value="1P Internet Only">1P Internet Only</option>
-							<option value="2P Internet + TV">2P Internet + TV</option>
-							<option value="2P Internet + Telepon">2P Internet + Telepon
-							</option>
-							<option value="3P Internet + TV + Telepon">3P Internet + TV +
-								Telepon</option>
-						</select>
-						<div class="error-msg" id="error_deal_bundling"></div>
-					</div>
-				</div>
-
-				<!-- PIC Data -->
-				<div class="form-section">
+					<div class="form-section">
 					<div class="section-title">
 						<h3>Data PIC Pelanggan</h3>
 					</div>
@@ -310,6 +274,58 @@
 						<div class="error-msg" id="error_foto_evidence"></div>
 					</div>
 				</div>
+
+					<!-- <div class="input-group">
+						<label for="tarif">Tarif Layanan Saat Ini <span
+								class="required">*</span></label>
+						<select id="tarif" name="tarif">
+							<option value="">Pilih Tarif</option>
+							<option value="< Rp 200.000">
+								< Rp 200.000</option>
+							<option value="Rp 200.000 - Rp 350.000">Rp 200.000 - Rp 350.000
+							</option>
+							<option value="> Rp 500.000">> Rp 500.000</option>
+						</select>
+						<div class="error-msg" id="error_tarif"></div>
+					</div> -->
+				</div>
+
+				<!-- Dealing specific fields -->
+				<div id="dealingFields" class="form-section" style="display: none;">
+					<div class="section-title">
+						<h3>Dealing Pelanggan</h3>
+					</div>
+
+					<div class="input-group">
+						<label for="paket_deal">Deal Paket berapa Mbps? <span
+								class="required">*</span></label>
+						<select id="paket_deal" name="paket_deal">
+							<option value="">Pilih Paket</option>
+							<option value="50 Mbps">50 Mbps</option>
+							<option value="75 Mbps">75 Mbps</option>
+							<option value="100 Mbps">100 Mbps</option>
+							<option value="> 100 Mbps">> 100 Mbps</option>
+						</select>
+						<div class="error-msg" id="error_paket_deal"></div>
+					</div>
+
+					<div class="input-group">
+						<label for="deal_bundling">Apakah dealing untuk layanan bundling? <span
+								class="required">*</span></label>
+						<select id="deal_bundling" name="deal_bundling">
+							<option value="">Pilih Bundling</option>
+							<option value="1P Internet Only">1P Internet Only</option>
+							<option value="2P Internet + TV">2P Internet + TV</option>
+							<option value="2P Internet + Telepon">2P Internet + Telepon
+							</option>
+							<option value="3P Internet + TV + Telepon">3P Internet + TV +
+								Telepon</option>
+						</select>
+						<div class="error-msg" id="error_deal_bundling"></div>
+					</div>
+				</div>
+
+				<!-- PIC Data -->
 
 				<!-- Submit button -->
 				<div class="submit-container">

@@ -149,15 +149,25 @@ function selectActivity(activity) {
 
 function setFieldRequirements(activityType) {
 	if (activityType === 'visit') {
-		document.getElementById('layanan').required = true;
-		document.getElementById('tarif').required = true;
+		// Untuk checkbox group, set required ke salah satu checkbox pertama
+		const layananCheckboxes = document.querySelectorAll('input[name="layanan[]"]');
+		if (layananCheckboxes.length > 0) {
+			layananCheckboxes[0].required = true; // Set required ke checkbox pertama
+		}
+		
+		// document.getElementById('tarif').required = true; // Di-comment karena field tarif di-comment
 		document.getElementById('paket_deal').required = false;
 		document.getElementById('deal_bundling').required = false;
 	} else {
+		// Reset semua checkbox required
+		const layananCheckboxes = document.querySelectorAll('input[name="layanan[]"]');
+		layananCheckboxes.forEach(checkbox => {
+			checkbox.required = false;
+		});
+		
 		document.getElementById('paket_deal').required = true;
 		document.getElementById('deal_bundling').required = true;
-		document.getElementById('layanan').required = false;
-		document.getElementById('tarif').required = false;
+		// document.getElementById('tarif').required = false; // Di-comment karena field tarif di-comment
 	}
 }
 
