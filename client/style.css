@@ -60,6 +60,11 @@
     --transition-fast: all 0.15s ease;
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --w: 460px;
+    --h: 72px;
+    --accent: #d32f2f; /* red */
+    --radius: 36px;
 }
 
 * {
@@ -335,38 +340,83 @@ body {
 }
 
 /* CUSTOM WHATEVER */
-  .segmented {
-    display: inline-grid;
-    grid-template-columns: 1fr 1fr;
-    border: 1px solid #444;
-    border-radius: 10px;
-    overflow: hidden;
-    width: 320px;
-    margin: 0 0 1rem;
-  }
+/* TRACK */
+.deal-switch{
+  --accent: var(--primary-red);
+  --accent-dark: #b91c1c;
+  --gap: 6px;
+  box-sizing: border-box;
+  inline-size: 100%;
+  max-inline-size: 560px;
+  block-size: 80px;
+  border-radius: 40px;
+  background: var(--gray-100);
+  border: 2px solid var(--gray-200);
+  position: relative;
+  margin-inline: auto;
+  cursor: pointer;
+  user-select: none;
+  overflow: clip;                 /* clip the knob shadow at edges */
+  outline: none;                  /* remove “ugly square” */
+  -webkit-tap-highlight-color: transparent;
+}
+.deal-switch:focus{ outline: none; }       /* no default focus box */
+.deal-switch:focus-visible{ box-shadow: none; } /* keep it clean as requested */
 
-  .seg-btn {
-    padding: .6rem 1rem;
-    font: 500 14px/1 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-    background: #eb0707;
-    color: #ddd;
-    border: 0;
-    cursor: pointer;
-    transition: background .15s ease, color .15s ease;
-  }
+/* EDGE LABELS (live off-canvas; slide in when active) */
+.deal-switch .edge-label{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  inline-size: 50%;
+  text-align: center;
+  font: 800 20px/1.2 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  color: var(--black);
+  pointer-events: none;
+  z-index: 1;                     /* under the knob */
+  transition: left .22s ease, right .22s ease;
+}
+/* BAKN lives to the LEFT of the track and slides in to the left half */
+.deal-switch .edge-label.bakn   { left: -50%; }  /* hidden outside to the left */
+.deal-switch[data-pos="right"] .edge-label.bakn { left: 0; } /* slide into left half */
 
-  .seg-btn:not(.is-active):hover { background: #ffffff; }
-  .seg-btn.is-active { background: #eb0707; color: #ffffff; }
+/* Kontrak lives to the RIGHT of the track and slides in to the right half */
+.deal-switch .edge-label.kontrak   { right: -50%; } /* hidden outside to the right */
+.deal-switch[data-pos="left"] .edge-label.kontrak { right: 0; } /* slide into right half */
+
+/* KNOB */
+.deal-switch .knob{
+  position: absolute;
+  top: var(--gap);
+  left: var(--gap);
+  inline-size: calc(80px - 2*var(--gap));
+  block-size:  calc(80px - 2*var(--gap));
+  border-radius: 50%;
+  background: var(--accent);
+  border: 4px solid var(--accent-dark);  /* slightly darker hollow ring */
+  box-shadow: 0 6px 14px rgba(0,0,0,.18);
+  z-index: 2;
+  transition: left .22s ease;
+}
+.deal-switch[data-pos="right"] .knob{
+  left: calc(100% - var(--gap) - (80px - 2*var(--gap)));
+}
 
 .dealing-opts {
-    text-align: center;
-    margin-bottom: var(--space-2xl);
-    padding: var(--space-xl);
-    background: var(--white);
-    border-radius: var(--radius-xl);
-    box-shadow: var(--shadow-sm);
-    border: 1px solid var(--gray-200);
+  --card-bg: var(--white);
+  --card-border: var(--gray-200);
+  --card-shadow: var(--shadow-md);
+
+  overflow: clip;
+  text-align: center;
+  margin-bottom: var(--space-2xl);
+  padding: clamp(var(--space-lg), 3vw, var(--space-xl));
+  background: var(--card-bg);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--card-border);
 }
+/* END OF CUSTOM WHATEVER */
 
 /* WELCOME SECTION */
 .welcome-section {
