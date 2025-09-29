@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 	<meta name="theme-color" content="#E85D04">
-	<title>8 Fishing Spot RLEGS III</title>
+	<title>RLEGS III High Five</title>
 	<!-- Telegram SDK -->
 	<script src="https://telegram.org/js/telegram-web-app.js"></script>
 	<!-- Font Awesome for better icons -->
@@ -21,12 +21,14 @@
 			<div class="header-content">
 				<div class="brand-section">
 					<div class="brand-text">
-						<h1>8 Fishing Spot RLEGS III</h1>
-						<p>Pendataan Visit Kawasan Industri, Desa, dan Puskesmas</p>
+						<h1>RLEGS III High Five</h1>
+						<p>Pendataan Program High Five RLEGS</p>
 					</div>
 				</div>
 			</div>
 		</header>
+
+		<!-- TODO: Change elements' names and ids to its corresponding context -->
 
 		<div id="mainMenu" class="main-content">
 			<div class="welcome-section">
@@ -71,11 +73,11 @@
 					</div>
 					<div class="activity-info">
 						<h3>DEALING</h3>
-						<p>Tahap dealing layanan kepada pelanggan</p>
+						<p>Tahap dealing dengan client</p>
 						<div class="activity-features">
-							<span>Dealing Pelanggan</span>
-							<span>Data PIC Pelanggan</span>
-							<span>Foto Evidence Visit</span>
+							<span>Dealing Client</span>
+							<span>Data PIC Client</span>
+							<span>Foto Evidence Dealing</span>
 						</div>
 					</div>
 					<button class="activity-btn">
@@ -96,9 +98,15 @@
 					<span class="back-icon">←</span>
 					<span>Kembali</span>
 				</button>
-				<div class="form-title" id="formTitle">FORM VISIT</div>
+				<div class="form-title" id="formTitle">Form High Five</div>
 			</div>
 
+			<div class="dealing-opts">
+				<h2>Pilih Jenis Kegiatan</h2>
+				<p>Silakan pilih kegiatan yang Anda lakukan</p>
+			</div>
+
+			<!-- Progress Bar -->
 			<div class="progress-container">
 				<div class="progress-info">
 					<span class="progress-text">Progress</span>
@@ -120,9 +128,11 @@
 					</div>
 
 					<div class="input-group">
-						<label for="kode_sa">Kode SA <span class="required">*</span></label>
+						<label for="kode_sa">NIK Account Manager
+							<span class="required">*</span></label>
 						<input type="text" id="kode_sa" name="kode_sa" required
-							placeholder="Contoh: MC01021, MN10202">
+							placeholder="Masukkan NIK Account Manager" maxlength="20"
+							inputmode="numeric">
 						<div class="error-msg" id="error_kode_sa"></div>
 					</div>
 
@@ -133,15 +143,6 @@
 						<div class="error-msg" id="error_nama"></div>
 					</div>
 
-					<div class="input-group">
-						<label for="no_telp">Nomor HP SA<span class="required">*</span></label>
-						<input type="tel" id="no_telp" name="no_telp" required
-							placeholder="081234567890">
-						<div class="error-msg" id="error_no_telp"></div>
-					</div>
-				</div>
-
-				<div class="form-section">
 					<div class="input-group">
 						<label for="witel">Witel <span class="required">*</span></label>
 						<select id="witel" name="witel" required>
@@ -160,13 +161,6 @@
 					</div>
 
 					<div class="input-group">
-						<label for="telda">Telkom Daerah <span class="required">*</span></label>
-						<input type="text" id="telda" name="telda" required
-							placeholder="Nama Telkom Daerah">
-						<div class="error-msg" id="error_telda"></div>
-					</div>
-
-					<div class="input-group">
 						<label for="tanggal">Tanggal Visit <span
 								class="required">*</span></label>
 						<input type="date" id="tanggal" name="tanggal" required>
@@ -174,25 +168,12 @@
 					</div>
 				</div>
 
+				<!-- TODO: Change Customer Selection to Drop Down Later -->
 				<div class="form-section">
 					<div class="input-group">
-						<label for="kategori">Kategori Pelanggan <span
-								class="required">*</span></label>
-						<select id="kategori" name="kategori" required>
-							<option value="">Pilih Kategori</option>
-							<option value="Kawasan Industri">Kawasan Industri</option>
-							<option value="Desa">Desa</option>
-							<option value="Puskesmas">Puskesmas</option>
-							<option value="Kecamatan">Kecamatan</option>
-						</select>
-						<div class="error-msg" id="error_kategori"></div>
-					</div>
-
-					<div class="input-group">
-						<label for="tenant">Nama Tenant/Desa/Puskesmas/Kecamatan <span
-								class="required">*</span></label>
+						<label for="tenant">Nama Client <span class="required">*</span></label>
 						<input type="text" id="tenant" name="tenant" required
-							placeholder="Nama lokasi yang dikunjungi">
+							placeholder="Nama client yang dikunjungi">
 						<div class="error-msg" id="error_tenant"></div>
 					</div>
 
@@ -356,6 +337,23 @@
 
 	<!-- Custom scripts -->
 	<script src="script.js"></script>
+
+	<script>
+		const el = document.getElementById('kode_sa');
+
+		// Strip any non-digits after each edit (covers typing, paste, drop)
+		el.addEventListener('input', e => {
+			const s = e.target.selectionStart;
+			const t = e.target.value;
+			const cleaned = t.replace(/\D+/g, '');
+			if (t !== cleaned) {
+				e.target.value = cleaned;
+				// restore caret as best effort
+				const delta = t.length - cleaned.length;
+				e.target.setSelectionRange(Math.max(0, s - delta), Math.max(0, s - delta));
+			}
+		});
+	</script>
 </body>
 
 </html>
