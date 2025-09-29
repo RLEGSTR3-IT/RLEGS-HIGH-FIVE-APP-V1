@@ -48,11 +48,11 @@
 					</div>
 					<div class="activity-info">
 						<h3>VISIT</h3>
-						<p>Kunjungan ke Kawasan Industri, Desa, dan Puskesmas untuk survey dan
-							pengumpulan data</p>
+						<p>Kunjungan ke Targeted Customers untuk menggali opportunity High Five
+							products</p>
 						<div class="activity-features">
-							<span>Data Visit Pelanggan</span>
-							<span>Data PIC Pelanggan</span>
+							<span>Data Visit Customers</span>
+							<span>Data PIC Customers</span>
 							<span>Foto Evidence Visit</span>
 						</div>
 					</div>
@@ -73,10 +73,10 @@
 					</div>
 					<div class="activity-info">
 						<h3>DEALING</h3>
-						<p>Tahap dealing dengan client</p>
+						<p>Tahap dealing High Five products dengan customers</p>
 						<div class="activity-features">
-							<span>Dealing Client</span>
-							<span>Data PIC Client</span>
+							<span>Data Dealing Customers</span>
+							<span>Data Kontrak Berlangganan</span>
 							<span>Foto Evidence Dealing</span>
 						</div>
 					</div>
@@ -101,10 +101,16 @@
 				<div class="form-title" id="formTitle">Form High Five</div>
 			</div>
 
-			<div class="dealing-opts">
-				<h2>Pilih Jenis Kegiatan</h2>
-				<p>Silakan pilih kegiatan yang Anda lakukan</p>
-			</div>
+			<!-- TODO: Option Dealing -->
+			<div id="dealing-cat-opts" class="dealing-opts" style="display: none;">
+				<h3>Pilih Jenis Dealing</h3>
+				</div<div class="segmented" role="group" aria-label="Mode switch">
+				<button type="button" class="seg-btn is-active" data-mode="bakn"
+					aria-pressed="true">BAKN/SPPJB</button>
+				<button type="button" class="seg-btn" data-mode="kontrak"
+					aria-pressed="false">Kontrak</button>
+				<input type="hidden" name="mode" id="mode" value="basic">
+			</div>>
 
 			<!-- Progress Bar -->
 			<div class="progress-container">
@@ -214,7 +220,52 @@
 						<div class="error-msg" id="error_layanan"></div>
 					</div>
 
-					<div class="form-section">
+					<div class="input-group">
+						<label for="tarif">Tarif Layanan Saat Ini <span
+								class="required">*</span></label>
+						<select id="tarif" name="tarif">
+							<option value="">Pilih Tarif</option>
+							<option value="< Rp 200.000">
+								< Rp 200.000</option>
+							<option value="Rp 200.000 - Rp 350.000">Rp 200.000 - Rp 350.000
+							</option>
+							<option value="> Rp 500.000">> Rp 500.000</option>
+						</select>
+						<div class="error-msg" id="error_tarif"></div>
+					</div>
+				</div>
+
+				<!-- Dealing specific fields -->
+				<div id="dealingFields" class="form-section" style="display: none;">
+					<div class="section-title">
+						<h3>Data Dealing</h3>
+					</div>
+
+					<div class="input-group">
+						<label for="paket_deal">Pilih Deal Layanan
+							<span class="required">*</span></label>
+						<select id="paket_deal" name="paket_deal">
+							<option value="">Pilih layanan</option>
+							<option value="50 Mbps">Bandwidth Connectivity</option>
+							<option value="75 Mbps">Digital Product</option>
+							<option value="100 Mbps">Cyber Security</option>
+							<option value="> 100 Mbps">Neucentrix</option>
+						</select>
+						<div class="error-msg" id="error_paket_deal"></div>
+					</div>
+
+					<div class="input-group">
+						<label for="revenue_deal">Nominal Revenue Dealing Layanan
+							<span class="required">*</span></label>
+						<input type="text" id="revenue_deal" name="revenue_deal"
+							placeholder="Masukkan Revenue Dealing Layanan" maxlength="20"
+							inputmode="numeric">
+						<div class="error-msg" id="error_revenue_deal"></div>
+					</div>
+				</div>
+
+				<!-- PIC Data -->
+				<div class="form-section">
 					<div class="section-title">
 						<h3>Data PIC Pelanggan</h3>
 					</div>
@@ -355,19 +406,21 @@
 	<script src="script.js"></script>
 
 	<script>
-		const el = document.getElementById('kode_sa');
+		const els = document.querySelectorAll('#kode_sa, #revenue_deal');
 
 		// Strip any non-digits after each edit (covers typing, paste, drop)
-		el.addEventListener('input', e => {
-			const s = e.target.selectionStart;
-			const t = e.target.value;
-			const cleaned = t.replace(/\D+/g, '');
-			if (t !== cleaned) {
-				e.target.value = cleaned;
-				// restore caret as best effort
-				const delta = t.length - cleaned.length;
-				e.target.setSelectionRange(Math.max(0, s - delta), Math.max(0, s - delta));
-			}
+		els.forEach(el => {
+			el.addEventListener('input', e => {
+				const s = e.target.selectionStart;
+				const t = e.target.value;
+				const cleaned = t.replace(/\D+/g, '');
+				if (t !== cleaned) {
+					e.target.value = cleaned;
+					// restore caret as best effort
+					const delta = t.length - cleaned.length;
+					e.target.setSelectionRange(Math.max(0, s - delta), Math.max(0, s - delta));
+				}
+			});
 		});
 	</script>
 </body>
