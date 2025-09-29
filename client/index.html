@@ -101,15 +101,21 @@
 				<div class="form-title" id="formTitle">Form High Five</div>
 			</div>
 
-			<!-- TODO: Option Dealing -->
+			<!-- NOTE: Option Dealing -->
 			<div id="dealing-cat-opts" class="dealing-opts" style="display: none;">
 				<h3>Pilih Jenis Dealing</h3>
-				<div class="segmented" role="group" aria-label="Mode switch">
-					<button type="button" class="seg-btn is-active" data-mode="basic"
-						aria-pressed="true">Basic</button>
-					<button type="button" class="seg-btn" data-mode="advanced"
-						aria-pressed="false">Advanced</button>
-					<input type="hidden" name="mode" id="mode" value="basic">
+				<br>
+
+				<div class="deal-switch" id="dealSwitch" role="switch" tabindex="0" aria-checked="false"
+					data-pos="left">
+					<!-- off-track labels that slide in -->
+					<span class="edge-label bakn">BAKN/SPPJB</span>
+					<span class="edge-label kontrak">Kontrak</span>
+
+					<!-- circular knob -->
+					<div class="knob" aria-hidden="true"></div>
+
+					<input type="hidden" name="mode" id="mode" value="kontrak">
 				</div>
 			</div>
 
@@ -340,6 +346,43 @@
 	<script src="script.js"></script>
 
 	<script>
+		// NOTE: Script for Dealing Slider
+		(function () {
+			const sw = document.getElementById('dealSwitch');
+			const hidden = document.getElementById('mode');
+
+			// mode: 'kontrak' => knob LEFT, Kontrak slides in from RIGHT
+			// mode: 'bakn'    => knob RIGHT,  BAKN slides in from LEFT
+			function setMode(mode) {
+				if (mode !== 'kontrak' && mode !== 'bakn') return;
+				const pos = (mode === 'kontrak') ? 'left' : 'right';
+				sw.dataset.pos = pos;
+				sw.setAttribute('aria-checked', String(pos === 'right'));
+				hidden.value = mode;
+			}
+
+			// Click ANYWHERE to choose by half
+			sw.addEventListener('click', (e) => {
+				const rect = sw.getBoundingClientRect();
+				const x = e.clientX - rect.left;
+				setMode(x < rect.width / 2 ? 'kontrak' : 'bakn');
+			});
+
+			// Keyboard (if you ever re-enable focus styling)
+			sw.addEventListener('keydown', (e) => {
+				if (e.key === 'ArrowLeft') setMode('kontrak');
+				if (e.key === 'ArrowRight') setMode('bakn');
+				if (e.key === ' ' || e.key === 'Enter') {
+					e.preventDefault();
+					setMode(hidden.value === 'bakn' ? 'kontrak' : 'bakn');
+				}
+			});
+
+			// Init
+			setMode(hidden.value === 'bakn' ? 'bakn' : 'kontrak');
+		})();
+
+		// NOTE: NEXT SECTION
 		const els = document.querySelectorAll('#kode_sa, #revenue_deal');
 
 		// Strip any non-digits after each edit (covers typing, paste, drop)
