@@ -151,6 +151,7 @@ function selectActivity(activity) {
 	}, 300);
 }
 
+// TODO: Add required property for new high five data fields
 function setFieldRequirements(activityType) {
 	if (activityType === 'visit') {
 		// Untuk checkbox group, set required ke salah satu checkbox pertama
@@ -169,8 +170,9 @@ function setFieldRequirements(activityType) {
 		});
 		
 		document.getElementById('paket_deal').required = true;
-		document.getElementById('deal_bundling').required = true;
-		// document.getElementById('tarif').required = false; // Di-comment karena field tarif di-comment
+		// document.getElementById('deal_bundling').required = true;
+		document.getElementById('layanan').required = false;
+		document.getElementById('tarif').required = false;
 	}
 }
 
@@ -260,6 +262,7 @@ function updateProgress() {
 }
 
 // ========== VALIDASI FIELD ==========
+// TODO: Add validation for new high five data fields
 function validateField(field) {
 	const fieldName = field.name;
 	const value = field.value.trim();

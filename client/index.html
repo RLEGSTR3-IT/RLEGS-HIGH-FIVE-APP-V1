@@ -29,6 +29,8 @@
 		</header>
 
 		<!-- TODO: Change elements' names and ids to its corresponding context -->
+		<!-- TODO: Add validation in the JS script, add mode-specific required element property (you know which one) -->
+		<!-- TODO: Remove red borders, and green borders for all data fields after being filled because it's ass -->
 
 		<div id="mainMenu" class="main-content">
 			<div class="welcome-section">
@@ -183,11 +185,40 @@
 
 				<!-- TODO: Change Customer Selection to Drop Down Later -->
 				<div class="form-section">
+					<div class="section-title">
+						<h3>Data Customer</h3>
+					</div>
+
 					<div class="input-group">
-						<label for="tenant">Nama Client <span class="required">*</span></label>
+						<label for="tenant">Nama Customer <span
+								class="required">*</span></label>
 						<input type="text" id="tenant" name="tenant" required
-							placeholder="Nama client yang dikunjungi">
+							placeholder="Nama customer yang dikunjungi">
 						<div class="error-msg" id="error_tenant"></div>
+					</div>
+
+					<div class="input-group">
+						<label for="nama_pic">Nama PIC Customer <span
+								class="required">*</span></label>
+						<input type="text" id="nama_pic" name="nama_pic" required
+							placeholder="Nama PIC">
+						<div class="error-msg" id="error_nama_pic"></div>
+					</div>
+
+					<div class="input-group">
+						<label for="jabatan_pic">Jabatan PIC Customer <span
+								class="required">*</span></label>
+						<input type="text" id="jabatan_pic" name="jabatan_pic" required
+							placeholder="Jabatan/Posisi">
+						<div class="error-msg" id="error_jabatan_pic"></div>
+					</div>
+
+					<div class="input-group">
+						<label for="telepon_pic">Nomor HP PIC Customer<span
+								class="required">*</span></label>
+						<input type="tel" id="telepon_pic" name="telepon_pic" required
+							placeholder="Nomor HP PIC">
+						<div class="error-msg" id="error_telepon_pic"></div>
 					</div>
 
 					<!-- Hidden input to store activity type -->
@@ -197,7 +228,7 @@
 				<!-- Visit specific fields -->
 				<div id="visitFields" class="form-section" style="display: none;">
 					<div class="section-title">
-						<h3>Detail Visit Client</h3>
+						<h3>Detail Visit Customer</h3>
 					</div>
 
 					<div class="input-group">
@@ -262,43 +293,18 @@
 					</div>
 
 					<div class="input-group">
-						<label for="revenue_deal">Nominal Revenue Dealing Layanan
-							<span class="required">*</span></label>
-						<input type="text" id="revenue_deal" name="revenue_deal"
-							placeholder="Masukkan Revenue Dealing Layanan" maxlength="20"
-							inputmode="numeric">
+						<label for="revenue_deal">
+							Nominal Revenue Dealing Layanan <span class="required">*</span>
+						</label>
+
+						<div class="currency-input">
+							<span class="prefix" aria-hidden="true">IDR</span>
+							<input type="text" id="revenue_deal" name="revenue_deal"
+								placeholder="Masukkan Revenue Dealing Layanan"
+								maxlength="20" inputmode="numeric" autocomplete="off">
+						</div>
+
 						<div class="error-msg" id="error_revenue_deal"></div>
-					</div>
-				</div>
-
-				<!-- PIC Data -->
-				<div class="form-section">
-					<div class="section-title">
-						<h3>Data PIC Pelanggan</h3>
-					</div>
-
-					<div class="input-group">
-						<label for="nama_pic">Nama PIC Pelanggan <span
-								class="required">*</span></label>
-						<input type="text" id="nama_pic" name="nama_pic" required
-							placeholder="Nama PIC">
-						<div class="error-msg" id="error_nama_pic"></div>
-					</div>
-
-					<div class="input-group">
-						<label for="jabatan_pic">Jabatan PIC <span
-								class="required">*</span></label>
-						<input type="text" id="jabatan_pic" name="jabatan_pic" required
-							placeholder="Jabatan/Posisi">
-						<div class="error-msg" id="error_jabatan_pic"></div>
-					</div>
-
-					<div class="input-group">
-						<label for="telepon_pic">Nomor HP PIC Pelanggan<span
-								class="required">*</span></label>
-						<input type="tel" id="telepon_pic" name="telepon_pic" required
-							placeholder="Nomor HP PIC">
-						<div class="error-msg" id="error_telepon_pic"></div>
 					</div>
 				</div>
 
