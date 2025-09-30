@@ -151,6 +151,7 @@ function selectActivity(activity) {
 	}, 300);
 }
 
+// TODO: Add required property for new high five data fields
 function setFieldRequirements(activityType) {
 	if (activityType === 'visit') {
 		document.getElementById('layanan').required = true;
@@ -158,6 +159,7 @@ function setFieldRequirements(activityType) {
 		document.getElementById('paket_deal').required = false;
 	} else {
 		document.getElementById('paket_deal').required = true;
+		// document.getElementById('deal_bundling').required = true;
 		document.getElementById('layanan').required = false;
 		document.getElementById('tarif').required = false;
 	}
@@ -249,6 +251,7 @@ function updateProgress() {
 }
 
 // ========== VALIDASI FIELD ==========
+// TODO: Add validation for new high five data fields
 function validateField(field) {
 	const fieldName = field.name;
 	const value = field.value.trim();
